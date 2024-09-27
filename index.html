@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon-like eCommerce Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">MyStore</div>
+        <div class="search-bar">
+            <input type="text" id="search-bar" placeholder="Search for products..." oninput="filterProducts()">
+            <button>Search</button>
+        </div>
+        <div class="cart">
+            <a href="#cart">Cart (<span id="cart-count">0</span>)</a>
+        </div>
+    </nav>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <select id="sort-products" onchange="sortProducts()">
+            <option value="default">Sort by</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="popularity">Popularity</option>
+        </select>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to MyStore</h1>
+        <p>Shop the best deals on all your favorite products</p>
+    </section>
+
+    <!-- Product Listing -->
+    <section class="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be added here dynamically -->
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart-section" class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total"></div>
+        <button onclick="checkout()">Proceed to Checkout</button>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
