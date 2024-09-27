@@ -11,13 +11,23 @@
     <nav class="navbar">
         <div class="logo">MyStore</div>
         <div class="search-bar">
-            <input type="text" placeholder="Search for products...">
+            <input type="text" id="search-bar" placeholder="Search for products..." oninput="filterProducts()">
             <button>Search</button>
         </div>
         <div class="cart">
             <a href="#cart">Cart (<span id="cart-count">0</span>)</a>
         </div>
     </nav>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <select id="sort-products" onchange="sortProducts()">
+            <option value="default">Sort by</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="popularity">Popularity</option>
+        </select>
+    </section>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -38,6 +48,7 @@
         <h2>Your Cart</h2>
         <div id="cart-items"></div>
         <div id="cart-total"></div>
+        <button onclick="checkout()">Proceed to Checkout</button>
     </section>
 
     <script src="app.js"></script>
