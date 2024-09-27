@@ -4,19 +4,23 @@ const products = [
         id: 1,
         name: "Laptop",
         price: 999.99,
-        image: "https://via.placeholder.com/200"
+/*        image: "https://via.placeholder.com/200", */
+        image: "https://cdn.mos.cms.futurecdn.net/wK6nd5RNWaeRsyPTvY3bYL-970-80.jpg.webp",
+        popularity: 4
     },
     {
         id: 2,
         name: "Smartphone",
         price: 699.99,
-        image: "https://via.placeholder.com/200"
+        image: "https://via.placeholder.com/200",
+        popularity: 5
     },
     {
         id: 3,
         name: "Headphones",
         price: 199.99,
-        image: "https://via.placeholder.com/200"
+        image: "https://via.placeholder.com/200",
+        popularity: 3
     }
 ];
 
@@ -26,6 +30,8 @@ let cart = [];
 // Function to display products
 function displayProducts() {
     const productGrid = document.getElementById('product-grid');
+    productGrid.innerHTML = '';  // Clear existing products
+
     products.forEach(product => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
@@ -76,6 +82,7 @@ function displayCart() {
         cartItems.innerHTML += `
             <div>
                 ${item.name} - $${item.price.toFixed(2)} x ${item.quantity}
+                <button onclick="removeFromCart(${item.id})">Remove</button>
             </div>
         `;
         totalPrice += item.price * item.quantity;
@@ -84,5 +91,27 @@ function displayCart() {
     cartTotal.innerHTML = `Total: $${totalPrice.toFixed(2)}`;
 }
 
-// Initialize the website
-displayProducts();
+// Function to remove items from cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartCount();
+    displayCart();
+}
+
+// Function to sort products
+function sortProducts() {
+    const sortBy = document.getElementById('sort-products').value;
+    if (sortBy === 'price-asc') {
+        products.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'price-desc') {
+        products.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'popularity') {
+        products.sort((a, b) => b.popularity - a.popularity);
+    }
+    displayProducts();
+}
+
+// Function to filter products by search
+function filterProducts() {
+    const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+    const filteredProducts = products.filter(product => product.name
